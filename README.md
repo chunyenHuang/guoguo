@@ -1,1 +1,3 @@
-My first app with angular 2.
+#My first app with angular 2.
+### Angular 2
+### Typescript
