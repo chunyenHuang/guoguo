@@ -5,6 +5,11 @@ h1 {
 }
 body {
   margin: 2em;
+  background-color: rgb(219, 219, 219);
+}
+
+#__bs_notify__ {
+  display: none;
 }
 
 .selected {

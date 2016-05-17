@@ -1,27 +1,24 @@
 import { Component } from '@angular/core';
-import { Hero } from './heros/hero';
-import { HeroDetailComponent } from './heros/hero-detail.component';
+import { Hero } from './heroes/hero';
+import { HeroDetailComponent } from './heroes/hero-detail.component';
+import { HeroService } from './heroes/hero.service';
 @Component({
   selector: 'my-app',
   templateUrl:'app/app.html',
-  styleUrls: ['style.css'],
+  // styleUrls: ['style.css'],
   directives: [HeroDetailComponent],
+  providers:[HeroService],
 })
 export class AppComponent {
   title = 'Tour of Heroes';
-  heroes = HEROES;
+  heroes: Hero[];
   selectedHero: Hero;
-  onSelect(hero: Hero) { this.selectedHero = hero; }
+  onSelect(hero: Hero) { this.selectedHero = hero; };
+  constructor(private heroService: HeroService) { }
+  getHeroes() {
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+  }
+  ngOnInit() {
+    this.getHeroes();
+  }
 }
-var HEROES: Hero[] = [
-  { "id": 11, "name": "Mr. Nice" },
-  { "id": 12, "name": "Narco" },
-  { "id": 13, "name": "Bombasto" },
-  { "id": 14, "name": "Celeritas" },
-  { "id": 15, "name": "Magneta" },
-  { "id": 16, "name": "RubberMan" },
-  { "id": 17, "name": "Dynama" },
-  { "id": 18, "name": "Dr IQ" },
-  { "id": 19, "name": "Magma" },
-  { "id": 20, "name": "Tornado" }
-];
